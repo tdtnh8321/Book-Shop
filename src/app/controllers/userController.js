@@ -83,7 +83,17 @@ const UserController = {
   //7. Cập nhật role
   updateRole: async (req, res) => {
     try {
-    } catch (error) {}
+      const id = req.params.id;
+      const role = req.body.role;
+      console.log(id + "-" + role);
+      await UserModel.findById(id).then((data) => {
+        data.role = role;
+        data.save();
+        return res.status(200).json({ msg: "Update role success" });
+      });
+    } catch (error) {
+      return res.status(500).json({ msg: "updateRole " + error });
+    }
   },
 };
 module.exports = UserController;
