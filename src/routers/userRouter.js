@@ -13,4 +13,6 @@ router.get("/profile/:id", userController.profile);
 router.post("/update/:id", userController.updateProfile);
 //6
 router.get("/", userController.getAllUser);
+//7
+router.put("/update_role/:id", userController.updateRole);
 module.exports = router;
