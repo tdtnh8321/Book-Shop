@@ -1,3 +1,5 @@
+const TypeModel = require("../models/typeModel");
+
 module.exports = function APIfeatures(query, queryString) {
   this.query = query; //Product.find().populate("idtype idauth idpublisher")
   this.queryString = queryString; //req.query
@@ -9,7 +11,7 @@ module.exports = function APIfeatures(query, queryString) {
     this.query = this.query.limit(perpage).skip(start);
     return this;
   };
-  this.sorting = () => {
+  this.sorting = async () => {
     const sort = this.queryString.sort || "";
     this.query = this.query.sort(sort);
     return this;
@@ -28,10 +30,9 @@ module.exports = function APIfeatures(query, queryString) {
   };
   this.typing = () => {
     const type = this.queryString.type;
+
     if (type) {
-      this.query = this.query.find({
-        idType: { slug: type },
-      });
+      this.query = this.query.find({ idType: type });
     } else {
       this.query = this.query.find();
     }
@@ -40,16 +41,9 @@ module.exports = function APIfeatures(query, queryString) {
 
   this.authoring = () => {
     const author = this.queryString.author;
-    console.log("------" + author);
+
     if (author) {
-      try {
-        this.query = this.query.populate({
-          path: "idauth",
-          match: { slug: author },
-        });
-      } catch (err) {
-        console.log(err);
-      }
+      this.query = this.query.find({ idAuthor: author });
     } else {
       this.query = this.query.find();
     }

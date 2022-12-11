@@ -5,7 +5,7 @@ const UserSchema = new Schema({
     type: String,
   },
   gender: {
-    type: String, //Male,Female
+    type: Number, //0:Another,1:Male,2:Female
   },
   phone: {
     type: Number,
