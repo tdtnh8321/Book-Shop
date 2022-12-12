@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const orderSchema = new Schema({
   total: {
+    //tổng tiền của hóa đơn sau khi đã dùng mã giảm giá
     type: Number,
   },
   date: {
@@ -9,6 +10,14 @@ const orderSchema = new Schema({
   },
   note: {
     type: String,
+  },
+  idVoucher: {
+    type: Schema.Types.ObjectId,
+    ref: "Vouchers",
+  },
+  idUser: {
+    type: Schema.Types.ObjectId,
+    ref: "Users",
   },
   status: {
     //0: đã hủy
