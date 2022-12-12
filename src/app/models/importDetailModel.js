@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ImportDetailSchema = new Schema({
-  idOrder: {
+  idImport: {
     type: Schema.Types.ObjectId,
     ref: "Imports",
   },
@@ -15,7 +15,7 @@ const ImportDetailSchema = new Schema({
   price: {
     type: Number,
   },
-  totalPrice: {
+  total: {
     type: Number,
   },
 });

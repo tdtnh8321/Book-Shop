@@ -9,12 +9,12 @@ const BookController = {
   //1. Lấy tất cả các sách
   getAllBook: async (req, res) => {
     try {
-      if (req.query.type) {
+      if (req.query.type != "ALL") {
         req.query.type = await TypeModel.findOne({ slug: req.query.type }).then(
           (data) => data._id
         );
       }
-      if (req.query.author) {
+      if (req.query.author != "ALL") {
         req.query.author = await AuthorModel.findOne({
           slug: req.query.author,
         }).then((data) => data._id);
